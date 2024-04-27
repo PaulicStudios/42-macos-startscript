@@ -4,6 +4,9 @@
 #defaults write com.apple.mouse.scaling -float 0.6875
 #echo "Mouse tracking speed has been set."
 
+# Stop Docker and Stats
+pkill Docker Stats
+
 # Change appearance to dark mode for the current user
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 echo "Dark mode has been enabled."
@@ -26,8 +29,9 @@ echo "Alert volume has been set to 0%."
 osascript -e 'set volume output volume 0'
 echo "Output volume has been set to 0%."
 
+
 # Start Docker
-bash /Users/pgrossma/.docker_valgrind_setup/init_docker.sh
+bash ~/.docker_valgrind_setup/init_docker.sh
 
 # Start Stats
 open -n ./Applications/Stats.app
@@ -39,6 +43,8 @@ echo "Turned WiFi off"
 # Delete trash
 rm -rf ~/.Trash/*
 echo "Deleted trash"
+
+python ~/Applications/display_manager/display_manager.py res 2880 1620
 
 echo "Preferences have been updated for the current user. Some changes might not take effect due to being cached."
 
